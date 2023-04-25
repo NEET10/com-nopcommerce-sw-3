@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>ElectronicsTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ElectronicsTest.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">Electronics</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">org.junit.After</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.junit.Before</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.junit.Test</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">org.openqa.selenium.By</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">utilities.Utility</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">ElectronicsTest </span><span class="s0">extends </span><span class="s1">Utility {</span>
+    <span class="s1">String baseUrl = </span><span class="s2">&quot;https://demo.nopcommerce.com/&quot;</span><span class="s0">;</span>
+
+    <span class="s1">@Before</span>
+    <span class="s0">public void </span><span class="s1">setUp() {</span>
+        <span class="s1">openBrowser(baseUrl)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">verifyUserShouldNavigateToCellPhonesPageSuccessfully() {</span>
+
+        <span class="s3">//Mouse Hover on “Electronics” Tab</span>
+        <span class="s1">mouseHoverToElement(By.xpath(</span><span class="s2">&quot;//body/div[6]/div[2]/ul[1]/li[2]/a[1]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Mouse Hover on “Cell phones” and click</span>
+        <span class="s1">mouseHoverToElementAndClick(By.xpath(</span><span class="s2">&quot;//body/div[6]/div[2]/ul[1]/li[2]/ul[1]/li[2]/a[1]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Verify the text “Cell phones”</span>
+        <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//h1[contains(text(),'Cell phones')]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Cell phones&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">verifyThatTheProductAddedSuccessfullyAndPlaceOrderSuccessfully() </span><span class="s0">throws </span><span class="s1">InterruptedException {</span>
+
+
+        <span class="s3">//Mouse Hover on “Electronics” Tab</span>
+        <span class="s1">mouseHoverToElement(By.xpath(</span><span class="s2">&quot;//body/div[6]/div[2]/ul[1]/li[2]/a[1]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Mouse Hover on “Cell phones” and click</span>
+        <span class="s1">mouseHoverToElementAndClick(By.xpath(</span><span class="s2">&quot;//body/div[6]/div[2]/ul[1]/li[2]/ul[1]/li[2]/a[1]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+
+        <span class="s3">//Verify the text “Cell phones”</span>
+        <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//h1[contains(text(),'Cell phones')]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Cell phones&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Click on List View Tab</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//a[contains(text(),'List')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s4">2000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Click on product name “Nokia Lumia 1020” link</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//h2[@class='product-title']//a[contains(text(),'Nokia Lumia 1020')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Verify the text “Nokia Lumia 1020”</span>
+        <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//h1[contains(text(),'Nokia Lumia 1020')]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Nokia Lumia 1020&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Verify the price “$349.00”</span>
+        <span class="s1">verifyExpectedAndActual(By.cssSelector(</span><span class="s2">&quot;#price-value-20&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;$349.00&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Change quantity to 2</span>
+        <span class="s1">clearText(By.cssSelector(</span><span class="s2">&quot;#product_enteredQuantity_20&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">sendTextToElement(By.cssSelector(</span><span class="s2">&quot;#product_enteredQuantity_20&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;2&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Click on “ADD TO CART” tab</span>
+        <span class="s1">clickOnElement(By.cssSelector(</span><span class="s2">&quot;#add-to-cart-button-20&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Verify the Message &quot;The product has been added to your shopping cart&quot; on Top green Bar</span>
+        <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//body/div[@id='bar-notification']/div[1]/p[1]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;The product has been added to your shopping cart&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//After that close the bar clicking on the cross button.</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//body/div[@id='bar-notification']/div[1]/span[1]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Then MouseHover on &quot;Shopping cart&quot; and Click on &quot;GO TO CART&quot; button.</span>
+       <span class="s1">mouseHoverToElement(By.xpath(</span><span class="s2">&quot;//span[contains(text(),'Shopping cart')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+       <span class="s1">Thread.sleep(</span><span class="s4">2000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">mouseHoverToElementAndClick(By.xpath(</span><span class="s2">&quot;//button[contains(text(),'Go to cart')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Verify the message &quot;Shopping cart&quot;</span>
+       <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//h1[contains(text(),'Shopping cart')]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Shopping cart&quot;</span><span class="s1">)</span><span class="s0">;</span>
+      <span class="s3">// Thread.sleep(3000);</span>
+        <span class="s3">//Verify the quantity is 2</span>
+        <span class="s1">verifyMessage(</span><span class="s2">&quot;(2)&quot;</span><span class="s0">, </span><span class="s1">verifyVisibleText(By.xpath(</span><span class="s2">&quot;//span[contains(text(),'(2)')]&quot;</span><span class="s1">)))</span><span class="s0">;</span>
+      <span class="s3">// verifyExpectedAndActual(By.xpath(&quot;//input[@id = 'itemquantity11232'][@value = '2']&quot;),&quot;2&quot;);</span>
+        <span class="s3">//Verify the Total $698.00</span>
+       <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//span[@class='value-summary']//strong[contains(text(),'$698.00')]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;$698.00&quot;</span><span class="s1">)</span><span class="s0">;</span>
+       <span class="s3">//click on checkbox “I agree with the terms of service”</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//input[@id='termsofservice']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Click on “CHECKOUT”</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[@id='checkout']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Verify the Text “Welcome, Please Sign In!”</span>
+        <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//h1[normalize-space()='Welcome, Please Sign In!']&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Welcome, Please Sign In!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Click on “REGISTER” tab</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[contains(text(),'Register')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Verify the text “Register”</span>
+        <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//h1[contains(text(),'Register')]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Register&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Fill the Mandatory fields</span>
+        <span class="s3">//First name</span>
+        <span class="s1">sendTextToElement(By.xpath(</span><span class="s2">&quot;//input[@id='FirstName']&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;James&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Last name</span>
+        <span class="s1">sendTextToElement(By.xpath(</span><span class="s2">&quot;//input[@id='LastName']&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Bond&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Email</span>
+        <span class="s1">sendTextToElement(By.xpath(</span><span class="s2">&quot;//input[@id='Email']&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;James24@gmail.com&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Password</span>
+        <span class="s1">sendTextToElement(By.xpath(</span><span class="s2">&quot;//input[@id='Password']&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;James@123&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//Confirm Password</span>
+        <span class="s1">sendTextToElement(By.xpath(</span><span class="s2">&quot;//input[@id='ConfirmPassword']&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;James@123&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//2.21 Click on “REGISTER” Button</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[@id='register-button']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Verify the message “Your registration completed”</span>
+        <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//div[contains(text(),'Your registration completed')]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Your registration completed&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//2.23 Click on “CONTINUE” tab</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//a[contains(text(),'Continue')]&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//2.24 Verify the text “Shopping cart”</span>
+        <span class="s1">verifyExpectedAndActual(By.xpath(</span><span class="s2">&quot;//h1[contains(text(),'Shopping cart')]&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;Shopping cart&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//click on the ‘Login’ link</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//a[text()='Log in']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//Enter valid username</span>
+        <span class="s1">sendTextToElement(By.xpath(</span><span class="s2">&quot;//input[@id='Email']&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;James24@gmail.com&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">// Enter valid password</span>
+        <span class="s1">sendTextToElement(By.xpath(</span><span class="s2">&quot;//input[@id='Password']&quot;</span><span class="s1">)</span><span class="s0">,</span><span class="s2">&quot;James@123&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">// Click on ‘LOGIN’ button</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[@type='submit' and text()='Log in']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+
+        <span class="s1">clickOnElement(By.id(</span><span class="s2">&quot;termsofservice&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s3">//clickOnElement(By.xpath(&quot;//input[@id='termsofservice']&quot;));;</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[@id='checkout']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.id(</span><span class="s2">&quot;BillingNewAddress_CountryId&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s4">2000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">selectFromDropDown(By.id(</span><span class="s2">&quot;BillingNewAddress_CountryId&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;United States&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//selectByContainsTextFromDropDown(By.id(&quot;BillingNewAddress_CountryId&quot;), &quot;United States&quot;);</span>
+        <span class="s1">Thread.sleep(</span><span class="s4">2000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.id(</span><span class="s2">&quot;BillingNewAddress_StateProvinceId&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">sendTextToElement(By.id(</span><span class="s2">&quot;BillingNewAddress_StateProvinceId&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;California&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sendTextToElement(By.id(</span><span class="s2">&quot;BillingNewAddress_City&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;Florida&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s3">//clickOnElement(By.id(&quot;BillingNewAddress_City&quot;));</span>
+        <span class="s3">// action.sendKeys(&quot;London&quot;).perform();</span>
+        <span class="s1">sendTextToElement(By.id(</span><span class="s2">&quot;BillingNewAddress_Address1&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;12, East gate&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sendTextToElement(By.id(</span><span class="s2">&quot;BillingNewAddress_ZipPostalCode&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;ME7 5AT&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sendTextToElement(By.id(</span><span class="s2">&quot;BillingNewAddress_PhoneNumber&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;01234566666&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s4">2000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[text()='Continue']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s4">2000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.id(</span><span class="s2">&quot;shippingoption_1&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s4">2000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[@class='button-1 shipping-method-next-step-button']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.id(</span><span class="s2">&quot;paymentmethod_1&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[@class='button-1 payment-method-next-step-button']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">selectFromDropDown(By.id(</span><span class="s2">&quot;CreditCardType&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;Visa&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sendTextToElement(By.id(</span><span class="s2">&quot;CardholderName&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;Mr Admin&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sendTextToElement(By.id(</span><span class="s2">&quot;CardNumber&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;4111 1111 1111 1111&quot;</span><span class="s1">)</span><span class="s0">; </span><span class="s3">//no more than 22 digits</span>
+        <span class="s1">selectFromDropDown(By.id(</span><span class="s2">&quot;ExpireMonth&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;03&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">selectFromDropDown(By.id(</span><span class="s2">&quot;ExpireYear&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;2025&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">sendTextToElement(By.id(</span><span class="s2">&quot;CardCode&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;123&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[@class='button-1 payment-info-next-step-button']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s4">2000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">compareTexts(By.xpath(</span><span class="s2">&quot;//span[contains(text(),'Credit Card')]&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;Credit Card&quot;</span><span class="s1">)</span><span class="s0">;</span>
+       <span class="s3">// compareTexts(By.id(&quot;shippingoption_2&quot;), &quot;2nd Day Air ($0.00)&quot;);</span>
+        <span class="s3">//verifyExpectedAndActual(By.xpath(&quot;//body/div[6]/div[3]/div[1]/div[1]/div[1]/div[2]/ol[1]/li[3]/div[2]/form[1]/div[1]/div[1]/div[1]/ul[1]/li[3]/div[1]&quot;),&quot;2nd Day Air&quot;);</span>
+
+        <span class="s1">compareTexts(By.xpath(</span><span class="s2">&quot;//span[text()='$698.00']&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;$698.00&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[text()='Confirm']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">compareTexts(By.xpath(</span><span class="s2">&quot;//h1[text()='Thank you']&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;Thank you&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">compareTexts(By.xpath(</span><span class="s2">&quot;//strong[text()='Your order has been successfully processed!']&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;Your order has been successfully processed!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Thread.sleep(</span><span class="s4">1000</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//button[text()='Continue']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">compareTexts(By.xpath(</span><span class="s2">&quot;//h2[text()='Welcome to our store']&quot;</span><span class="s1">)</span><span class="s0">, </span><span class="s2">&quot;Welcome to our store&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">clickOnElement(By.xpath(</span><span class="s2">&quot;//a[normalize-space()='Log out']&quot;</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">getCurrentUrl()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s1">@After</span>
+    <span class="s0">public void </span><span class="s1">tearDown(){</span>
+        <span class="s3">//closeBrowser();</span>
+    <span class="s1">}</span>
+
+<span class="s1">}</span>
+
+</pre>
+</body>
+</html>
